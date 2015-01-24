@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -17,7 +20,10 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        EditText editText = (EditText)findViewById(R.id.editText);
+        final EditText editText = (EditText) findViewById(R.id.editText);
+        final TextView mainWordText = (TextView) findViewById(R.id.mainWordText);
+
+        mainWordText.setText("Hello");
 
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -33,17 +39,33 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
+                String mainWordString = mainWordText.getText().toString().toUpperCase();
+
+                ArrayList<Character> arrayList = new ArrayList<>();
+                for (int i = 0; i < mainWordString.length(); i++) {
+                    arrayList.add(mainWordString.charAt(i));
+                }
+
                 StringBuilder sb = new StringBuilder();
 
                 boolean replace = false;
-                for(int i = 0; i < s.length(); i++)
-                {
+                for (int i = 0; i < s.length(); i++) {
                     char ch = s.charAt(i);
 
-                    if (Character.isLetter(ch))
+                    int index = -1;
+                    for (int j = 0; j < arrayList.size(); j++) {
+                        if (Character.toUpperCase(ch) == arrayList.get(j)) {
+                            index = j;
+                            break;
+                        }
+                    }
+
+                    if (index != -1) {
                         sb.append(ch);
-                    else
+                        arrayList.remove(index);
+                    } else {
                         replace = true;
+                    }
                 }
 
                 if (replace)
