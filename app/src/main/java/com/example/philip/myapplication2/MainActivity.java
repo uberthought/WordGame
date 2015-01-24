@@ -40,7 +40,7 @@ public class MainActivity extends ActionBarActivity {
                 {
                     char ch = s.charAt(i);
 
-                    if (Character.isAlphabetic(ch))
+                    if (Character.isLetter(ch))
                         sb.append(ch);
                     else
                         replace = true;
