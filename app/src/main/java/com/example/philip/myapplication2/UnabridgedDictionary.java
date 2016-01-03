@@ -16,7 +16,7 @@ import java.util.HashMap;
  */
 public class UnabridgedDictionary {
     private static UnabridgedDictionary instance;
-    HashMap<String, DictionaryWord> wordList;
+    HashMap<String, DictionaryWord> wordList = new HashMap<>();
 
     UnabridgedDictionary(Context context) {
         Resources resources = context.getResources();
