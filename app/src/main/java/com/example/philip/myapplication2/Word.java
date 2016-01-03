@@ -7,6 +7,5 @@ public abstract class Word {
     String Prononuciation;
     String Definition;
     String Letters;
-    int Rank;
     int MinimumLength;
 }
